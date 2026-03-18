@@ -75,7 +75,6 @@ function renderCat(filter) {
     }
 }
 
-
 // Visa kattrasen på ett kort
 function createCard(breed, imgUrl) {
     mashup.innerHTML +=
@@ -89,6 +88,57 @@ function createCard(breed, imgUrl) {
         "</div>";
 }
 
+                                                                           /*=====KARTAN=====*/
+
+//skapa kartan
+const map = L.map('map').setView([20, 0], 2);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+
+//hitta var kattras har sitt ursprungsland. Lägg till ikon på kartan
+async function mapLocation(search){
+    try{
+        const response = await fetch("https://nominatim.openstreetmap.org/search?format=json&q=" + 
+            encodeURIComponent(search)
+    );
+
+        const data = await response.json();
+
+        //utifrån response från json, få fram koordinaterna.
+        if(data.length > 0){
+            const lat = data[0].lat;
+            const lon = data[0].lon;   
+            
+            //skapa markör
+            let icon = L.divIcon({
+                className: 'icon',
+                html: '🐈‍⬛',
+                iconSize: [24, 24],
+                iconAnchor:[12,35],
+                popupAnchor:[0, -24]
+            });
+                
+            //ta bort markör
+            if(window.currentMarker){
+                map.removeLayer(window.currentMarker);
+            }
+
+            window.currentMarker =
+            L.marker([lat, lon], {
+                icon: icon
+            }).addTo(map)
+            .bindPopup(data[0].display_name)
+            .openPopup();
+            
+            map.flyTo([lat,lon], 3.8);
+        }
+    }catch(err){
+        console.error("Något gick fel: ", err);
+    }
+}
 // Sökfunktion, både enter och knapp
 searchBtn.addEventListener("click", () => {
     renderCat(searchInput.value.trim());

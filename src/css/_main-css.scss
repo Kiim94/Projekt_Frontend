@@ -74,6 +74,20 @@ main{
     text-align:left;
 }
 
+#map{
+    margin-top:1.5rem;
+    height:500px;
+    max-width:600px;
+    width:100%;
+    border:1px solid color.$color-bg;
+    @include shadow;
+}
+#map.map-width{
+    height:500px;
+    max-width:900px;
+    margin:1.5rem auto;
+    
+}
 
 .search-container{
     display:flex;
