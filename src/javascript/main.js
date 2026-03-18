@@ -88,6 +88,54 @@ function createCard(breed, imgUrl) {
         "</div>";
 }
 
+                                                                        /* ===== Land-kortet =====*/
+
+//async för att hämta information om länder från restcountries.com
+async function getCountryInfo(){
+    try{
+        const response = await fetch(
+            "https://restcountries.com/v3.1/all?fields=name,flags,latlng,capital,region,subregion"
+        )
+        countryData = await response.json()
+    } catch(error){
+        console.error("Det gick inte att hämta landet: ", error);
+    }
+}
+
+//function baserad på getCountryInfo. (originCountry) kommer från renderCat, syftar på ursprungslandet
+async function showCountryInfo(originCountry){
+    const countryDiv = document.getElementById("countryInfo");
+    countryDiv.innerHTML = "";
+
+    //hitta första landet i countryData vars namn matchar med originCountry
+    const country = countryData.find(c => 
+        c.name.common.toLowerCase() === originCountry.toLowerCase()
+    );
+    if (!country){
+        countryDiv.innerHTML = "<p>Information om landet finns ej</p>";
+        return;
+    }
+
+    let capitalName = "Okänt";
+    if(country.capital && country.capital.length > 0){
+        capitalName = country.capital[0];
+    };
+
+    countryDiv.innerHTML =
+    "<img src='" + country.flags.svg + "' alt='Flagga " + country.name.common + "' class='country-flag'>" +
+    "<h3>Land: " + country.name.common + "</h3>" +
+    "<p><strong>Huvudstad:</strong> " + capitalName + "</p>"+
+    "<p><strong>Region:</strong> " + (country.region || "Okänt") + "</p>"+
+    "<p><strong>Subregion:</strong> " + (country.subregion || "Okänt") + "</p>";
+
+    mapDiv.classList.remove("map-width");
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
+}
+
+
+
                                                                            /*=====KARTAN=====*/
 
 //skapa kartan
@@ -139,6 +187,7 @@ async function mapLocation(search){
         console.error("Något gick fel: ", err);
     }
 }
+
 // Sökfunktion, både enter och knapp
 searchBtn.addEventListener("click", () => {
     renderCat(searchInput.value.trim());

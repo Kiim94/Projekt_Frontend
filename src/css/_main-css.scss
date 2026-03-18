@@ -73,6 +73,18 @@ main{
 .breed-card p {
     text-align:left;
 }
+#countryInfo{
+    @extend .breed-card;
+    max-width:500px;   
+    width:100%; 
+    .country-flag{
+        width:100%;
+        max-width:200px;
+        @include shadow;
+        transform-origin:top center;
+        animation:sway 2s ease-in-out infinite alternate;
+    }
+}
 
 #map{
     margin-top:1.5rem;
