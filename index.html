@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <title>Katt Atlas</title>
+    <script type="module" crossorigin src="/Projekt_Frontend/assets/main-gxvFmHvS.js"></script>
+    <link rel="stylesheet" crossorigin href="/Projekt_Frontend/assets/main-B6E-Fpc8.css">
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1 class="arched">
+          <span>K</span>
+          <span>A</span>
+          <span>T</span>
+          <span>T</span>
+          <span>&nbsp;</span>
+          <span>A</span>
+          <span>T</span>
+          <span>L</span>
+          <span>A</span>
+          <span>S</span>
+        </h1>
+        <!--Jag ber om ursäkt för detta nedan. Det står "Sök efter katter". Ville att texten skulle "hoppa"-->
+        <h2 class="bounce-text">
+          <span>S</span>
+          <span>ö</span>
+          <span>k</span>
+          <span>&nbsp;</span>
+          <span>e</span>
+          <span>f</span>
+          <span>t</span>
+          <span>e</span>
+          <span>r</span>
+          <span>&nbsp;</span>
+          <span>k</span>
+          <span>a</span>
+          <span>t</span>
+          <span>t</span>
+          <span>e</span>
+          <span>r</span>
+        </h2>
+
+        <div class="intro-text">
+          <p>Nedan kan du söka på kattraser för att få veta mer om dem. Du kan även se på karta var rasen har sitt ursprung, samt lite information om det landet.</p>
+          <p>Svårt att komma igång? Nedan finns en lista på namn du kan testa att söka:</p>
+          <ul>
+            <li>Cornish Rex</li>
+            <li>Dragon Li</li>
+            <li>LaPerm</li>
+            <li>Cyprus</li>
+            <li>Aegean</li>
+          </ul>
+          <p>Det går att testa med bara några bokstäver för att få upp till 3 resultat också.</p>
+          <p>Märk väl att informationen om katterna och länderna är på <b>engelska</b> och om det är flera alternativ så är det den första kattens
+            ursprungsland som kommer att visas på kartan.</p>
+        </div>
+
+          <div class="search-container">
+            <input type="text" placeholder="Sök..." id="search">
+            <button id="srcBtn">🔍</button>
+          </div>
+          <div id="mashup"></div>
+          <div class="sidebyside">
+            <div id="countryInfo" class="hidden"></div>
+            <div id="map" class="map-width"></div>
+          </div>
+
+      </section>
+    </main>
+    <footer>
+      <p>Moa B.</p>
+      <p>mobr2500@student.miun.se</p>
+      <p>DT211G</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  </body>
+</html>
