@@ -88,7 +88,7 @@ function createCard(breed, imgUrl) {
         "</div>";
 }
 
-                                                                        /* ===== Land-kortet =====*/
+                                                                         /* ===== Land-kortet =====*/
 
 //async för att hämta information om länder från restcountries.com
 async function getCountryInfo(){
@@ -132,10 +132,29 @@ async function showCountryInfo(originCountry){
 
     sideBySide.classList.add("active");
 
+
+    const wikiText = await fetchWikiInfo(country.name.common);
+    
+        if (wikiText){
+            countryDiv.innerHTML += "<p><strong>Summering: </strong><br>" + wikiText + "</p>";
+    }
     mapDiv.classList.remove("map-width");
     setTimeout(() => {
         map.invalidateSize();
     }, 100);
+}
+
+//ville ha lite mer "wikipedia stil"
+async function fetchWikiInfo(countryName){
+    const url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(countryName);  
+    try{
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.extract;
+    } catch(error){
+        console.error(error);
+        return "";
+    }
 }
 
 

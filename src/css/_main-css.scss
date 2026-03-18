@@ -73,13 +73,13 @@ main{
 .breed-card p {
     text-align:left;
 }
+//karta och land info
 
 .sidebyside{
     display:grid;
     gap:2rem;
     grid-template-columns: 1fr;
 }
-
 #map{
     margin-top:1.5rem;
     height:500px;
@@ -107,7 +107,6 @@ main{
         animation:sway 2s ease-in-out infinite alternate;
     }
 }
-
 //aktiveras i javascript: göm land-div när den inte behövs (t.ex. i start)
 .hidden{
     display:none;
