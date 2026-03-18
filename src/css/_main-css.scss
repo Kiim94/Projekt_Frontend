@@ -73,17 +73,11 @@ main{
 .breed-card p {
     text-align:left;
 }
-#countryInfo{
-    @extend .breed-card;
-    max-width:500px;   
-    width:100%; 
-    .country-flag{
-        width:100%;
-        max-width:200px;
-        @include shadow;
-        transform-origin:top center;
-        animation:sway 2s ease-in-out infinite alternate;
-    }
+
+.sidebyside{
+    display:grid;
+    gap:2rem;
+    grid-template-columns: 1fr;
 }
 
 #map{
@@ -99,6 +93,28 @@ main{
     max-width:900px;
     margin:1.5rem auto;
     
+}
+
+#countryInfo{
+    @extend .breed-card;
+    max-width:500px;   
+    width:100%; 
+    .country-flag{
+        width:100%;
+        max-width:200px;
+        @include shadow;
+        transform-origin:top center;
+        animation:sway 2s ease-in-out infinite alternate;
+    }
+}
+
+//aktiveras i javascript: göm land-div när den inte behövs (t.ex. i start)
+.hidden{
+    display:none;
+}
+.active{
+    grid-template-columns:auto 1fr;
+    column-gap:1rem;
 }
 
 .search-container{

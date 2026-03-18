@@ -128,6 +128,10 @@ async function showCountryInfo(originCountry){
     "<p><strong>Region:</strong> " + (country.region || "Okänt") + "</p>"+
     "<p><strong>Subregion:</strong> " + (country.subregion || "Okänt") + "</p>";
 
+    countryDiv.classList.remove("hidden");
+
+    sideBySide.classList.add("active");
+
     mapDiv.classList.remove("map-width");
     setTimeout(() => {
         map.invalidateSize();
