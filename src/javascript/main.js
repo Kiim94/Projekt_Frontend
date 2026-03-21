@@ -124,7 +124,7 @@ function createCard(breed, imgUrl) {
     mashup.innerHTML +=
         "<div class='breed-card'>" +
             "<h3>" + breed.name + "</h3>" +
-            "<img src='" + imgUrl + "' alt='" + breed.name + "' class='breed-image'>" +
+            "<img src='" + imgUrl + "' alt='" + breed.name + "' class='breed-image' loading= 'lazy'>" +
             "<p><strong>Beskrivning: <br></strong>" + breed.description + "</p>" +
             "<p><strong>Ursprungsland: <br></strong>" + origin + "</p>" +
             "<p><strong>Temperament: <br></strong> " + breed.temperament + "</p>" +
@@ -193,7 +193,7 @@ async function showCountryInfo(correctedOrigin){
     "<p><strong>Huvudstad:</strong> " + capitalName + "</p>"+
     "<p><strong>Region:</strong> " + (country.region || "Okänt") + "</p>"+
     "<p><strong>Subregion:</strong> " + (country.subregion || "Okänt") + "</p>";
-    
+
     const wikiText = await fetchWikiInfo(country.name.common);
         
     if (wikiText){

@@ -54,7 +54,7 @@ main{
     line-height:1.5;
     opacity:0;
     transform:translateY(20px);
-    animation:fadeIn 0.5s forwards;
+    animation:fadeIn 2s forwards;
     @include shadow;
         .breed-image {
         max-width:400px;
