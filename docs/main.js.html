@@ -1,4 +1,32 @@
-import '../css/style.scss';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import '../css/style.scss';
 
 document.addEventListener("DOMContentLoaded", () => {
     getBreeds();
@@ -32,7 +60,7 @@ const correctOrigins={
  * Uppdaterar med felmeddelande om anropet misslyckas.
  * 
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function getBreeds() {
     try {
@@ -40,7 +68,7 @@ async function getBreeds() {
         breedsData = await resp.json();
     } catch (error) {
         console.error(error);
-        mashup.innerHTML = "<p>Det gick inte att hämta kattraser.</p>";
+        mashup.innerHTML = "&lt;p>Det gick inte att hämta kattraser.&lt;/p>";
     }
 }
 
@@ -63,7 +91,7 @@ function renderCat(filter) {
 
     //om input är tomt, visa meddelande
     if(!filter){
-        mashup.innerHTML ="<p style='text-align:center'>Fyll i en kattras att söka efter 🐱</p>";
+        mashup.innerHTML ="&lt;p style='text-align:center'>Fyll i en kattras att söka efter 🐱&lt;/p>";
         if(window.currentMarker) map.removeLayer(window.currentMarker);
         return;
     }
@@ -75,13 +103,13 @@ function renderCat(filter) {
 
     //om ingent resultat, visa text ta bort eventuell gammal markör på karta.
     if (filtered.length === 0) {
-        mashup.innerHTML = "<p>Tyvärr matchade ingen katt.</p>";
+        mashup.innerHTML = "&lt;p>Tyvärr matchade ingen katt.&lt;/p>";
 
         if(window.currentMarker) map.removeLayer(window.currentMarker);
         return;
     }
     //loopa igenom resultat för att få fram bilder. Kattras + bild skickas till funktionen createCard
-    for (let i = 0; i < 3 && i < filtered.length; i++) {
+    for (let i = 0; i &lt; 3 &amp;&amp; i &lt; filtered.length; i++) {
         const breed = filtered[i];
         if (!breed.reference_image_id){
             continue;
@@ -122,14 +150,14 @@ function createCard(breed, imgUrl) {
 
     const origin = correctOrigins[breed.name] || breed.origin;
     mashup.innerHTML +=
-        "<div class='breed-card'>" +
-            "<h3>" + breed.name + "</h3>" +
-            "<img src='" + imgUrl + "' alt='" + breed.name + "' class='breed-image'>" +
-            "<p><strong>Beskrivning: <br></strong>" + breed.description + "</p>" +
-            "<p><strong>Ursprungsland: <br></strong>" + origin + "</p>" +
-            "<p><strong>Temperament: <br></strong> " + breed.temperament + "</p>" +
-            "<p><strong>Livslängd: <br></strong> " + breed.life_span + " år</p>" +
-        "</div>";
+        "&lt;div class='breed-card'>" +
+            "&lt;h3>" + breed.name + "&lt;/h3>" +
+            "&lt;img src='" + imgUrl + "' alt='" + breed.name + "' class='breed-image'>" +
+            "&lt;p>&lt;strong>Beskrivning: &lt;br>&lt;/strong>" + breed.description + "&lt;/p>" +
+            "&lt;p>&lt;strong>Ursprungsland: &lt;br>&lt;/strong>" + origin + "&lt;/p>" +
+            "&lt;p>&lt;strong>Temperament: &lt;br>&lt;/strong> " + breed.temperament + "&lt;/p>" +
+            "&lt;p>&lt;strong>Livslängd: &lt;br>&lt;/strong> " + breed.life_span + " år&lt;/p>" +
+        "&lt;/div>";
 }
 
                                                                          /* ===== Land-kortet =====*/
@@ -139,7 +167,7 @@ function createCard(breed, imgUrl) {
  * Uppdaterar med felmeddelande om anropet misslyckas.
  * 
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function getCountryInfo(){
     try{
@@ -167,7 +195,7 @@ async function getCountryInfo(){
  * 
  * @async
  * @param {string} correctedOrigin - Namnet på landet som ska visas
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function showCountryInfo(correctedOrigin){
     const countryDiv = document.getElementById("countryInfo");
@@ -178,26 +206,26 @@ async function showCountryInfo(correctedOrigin){
         c.name.common.toLowerCase() === correctedOrigin.toLowerCase()
     );
     if (!country){
-        countryDiv.innerHTML = "<p>Information om landet finns ej</p>";
+        countryDiv.innerHTML = "&lt;p>Information om landet finns ej&lt;/p>";
         return;
     }
 
     let capitalName = "Okänt";
-    if(country.capital && country.capital.length > 0){
+    if(country.capital &amp;&amp; country.capital.length > 0){
         capitalName = country.capital[0];
     };
 
     countryDiv.innerHTML =
-    "<img src='" + country.flags.svg + "' alt='Flagga " + country.name.common + "' class='country-flag'>" +
-    "<h3>Land: " + country.name.common + "</h3>" +
-    "<p><strong>Huvudstad:</strong> " + capitalName + "</p>"+
-    "<p><strong>Region:</strong> " + (country.region || "Okänt") + "</p>"+
-    "<p><strong>Subregion:</strong> " + (country.subregion || "Okänt") + "</p>";
+    "&lt;img src='" + country.flags.svg + "' alt='Flagga " + country.name.common + "' class='country-flag'>" +
+    "&lt;h3>Land: " + country.name.common + "&lt;/h3>" +
+    "&lt;p>&lt;strong>Huvudstad:&lt;/strong> " + capitalName + "&lt;/p>"+
+    "&lt;p>&lt;strong>Region:&lt;/strong> " + (country.region || "Okänt") + "&lt;/p>"+
+    "&lt;p>&lt;strong>Subregion:&lt;/strong> " + (country.subregion || "Okänt") + "&lt;/p>";
     
     const wikiText = await fetchWikiInfo(country.name.common);
         
     if (wikiText){
-        countryDiv.innerHTML += "<p><strong>Summering: </strong><br>" + wikiText + "</p>";
+        countryDiv.innerHTML += "&lt;p>&lt;strong>Summering: &lt;/strong>&lt;br>" + wikiText + "&lt;/p>";
     }
 
     countryDiv.classList.remove("hidden");
@@ -217,7 +245,7 @@ async function showCountryInfo(correctedOrigin){
  * 
  * @async
  * @param {string} countryName - Namnet på landet som ska hämtas från Wikipedia
- * @returns {Promise<string>} - Summeringen av landet som text: tom sträng vid fel
+ * @returns {Promise&lt;string>} - Summeringen av landet som text: tom sträng vid fel
  */
 async function fetchWikiInfo(countryName){
     const url = "https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(countryName);  
@@ -237,7 +265,7 @@ async function fetchWikiInfo(countryName){
 const map = L.map('map').setView([20, 0], 2);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&amp;copy; OpenStreetMap contributors'
 }).addTo(map);
 
 /**
@@ -251,11 +279,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
  * 
  * @async
  * @param {string} correctedOrigin - Namnet på landet eller platsen som ska visas på kartan.
- * @returns {Promise<void>} - All output sker via kartan så ingen output.
+ * @returns {Promise&lt;void>} - All output sker via kartan så ingen output.
  */
 async function mapLocation(correctedOrigin){
     try{
-        const response = await fetch("https://nominatim.openstreetmap.org/search?format=json&q=" + 
+        const response = await fetch("https://nominatim.openstreetmap.org/search?format=json&amp;q=" + 
             encodeURIComponent(correctedOrigin)
     );
 
@@ -302,4 +330,26 @@ searchBtn.addEventListener("click", () => {
 searchInput.addEventListener("keydown", event => {
     if (event.key === "Enter") 
         renderCat(searchInput.value.trim());
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#fetchWikiInfo">fetchWikiInfo</a></li><li><a href="global.html#getBreeds">getBreeds</a></li><li><a href="global.html#getCountryInfo">getCountryInfo</a></li><li><a href="global.html#mapLocation">mapLocation</a></li><li><a href="global.html#renderCat">renderCat</a></li><li><a href="global.html#showCountryInfo">showCountryInfo</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Sat Mar 21 2026 17:28:05 GMT+0100 (centraleuropeisk normaltid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
