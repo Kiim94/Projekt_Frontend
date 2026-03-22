@@ -1,4 +1,6 @@
 import '../css/style.scss';
+import L from "leaflet"
+import "leaflet/dist/leaflet.css"
 
 document.addEventListener("DOMContentLoaded", () => {
     getBreeds();
