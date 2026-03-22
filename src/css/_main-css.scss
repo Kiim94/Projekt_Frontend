@@ -230,3 +230,10 @@ h1,h2{
         font-size:14px;
     }
 }
+@media (max-width:450px){
+    footer{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+}
