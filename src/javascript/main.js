@@ -1,6 +1,4 @@
 import '../css/style.scss';
-import L from "leaflet"
-import "leaflet/dist/leaflet.css"
 
 document.addEventListener("DOMContentLoaded", () => {
     getBreeds();
@@ -239,7 +237,11 @@ async function fetchWikiInfo(countryName){
 const map = L.map('map').setView([20, 0], 2);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; OpenStreetMap contributors',
+    minZoom:2,
+    maxZoom:5,
+    updateWhenIdle:true,
+    noWrap:true
 }).addTo(map);
 
 /**
