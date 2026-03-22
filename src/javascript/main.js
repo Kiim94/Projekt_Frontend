@@ -86,7 +86,7 @@ function renderCat(filter) {
         if (!breed.reference_image_id){
             continue;
         }
-        const imgUrl = "https://cdn2.thecatapi.com/images/" + breed.reference_image_id + ".jpg";
+        const imgUrl = "https://cdn2.thecatapi.com/images/" + breed.reference_image_id + ".jpg?size=small";
         createCard(breed, imgUrl);
     }
 
